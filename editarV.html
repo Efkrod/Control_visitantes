@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>Formulario para la creacion de visitante</title>
+
+    </head>
+    <body>
+        <section class="form-register">
+            <form  action="/actualizar/{{visitantes.0}}" method="POST">
+                <h4>Edicion de usuario</h4>
+
+                    <input class="controls" type="text" name="nombre" id="nombre" placeholder="Ingrese el nuevo nombre del usuario" value={{visitantes.1}} required pattern="[A-Za-z]{3,10}"/>
+                    <input class="controls" type="text" name="apellido" id="apellido" placeholder="Ingrese el nuevo apellido del usuario" value={{visitantes.2}} required pattern="[A-Za-z]{3,10}"/>
+                    <input class="controls" type="text" name="telefono" id="telefono"  placeholder="Ingrese el nuevo telefono del usuario" value={{visitantes.3}} required pattern="[0-9]{3,10}"/>
+                    <input class="controls" type="text" name="direccion" id="direccion"  placeholder="Ingrese la nueva direccion visitante" value={{visitantes.4}} required pattern="[A-Za-z0-9!?- ]{3,10}"/>
+                    <button type = "submit"> Guardar </button>
+
+            </form>
+        </section>
+    </body>
+</html>
+       

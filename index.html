@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>Formulario para la creacion de visitante</title>
+
+    </head>
+    <body>
+        <section class="form-register">
+            {%with messages = get_flashed_messages()%}
+            {%if messages%}
+            {%for m in messages%}
+                <p>{{m}}</p>
+            {%endfor%}
+            {%endif%}
+            {%endwith%}
+            <form  action="/crearVisitante" method="POST">
+                <h4>Creación del usuario</h4>
+
+                    <input class="controls" type="text" name="id" id="id"  placeholder="Ingrese el documento de identificacion del usuario" required pattern="[0-9]{2,10}"/>
+                    <input class="controls" type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre del usuario" required pattern="[A-Za-z]{3,10}"/>
+                    <input class="controls" type="text" name="apellido" id="apellido" placeholder="Ingrese el apellido del usuario" required pattern="[A-Za-z]{3,10}"/>
+                    <input class="controls" type="text" name="telefono" id="telefono"  placeholder="Ingrese el telefono del usuario" required pattern="[0-9]{3,10}"/>
+                    <input class="controls" type="text" name="direccion" id="direccion"  placeholder="Ingrese la direccion visitante" required pattern="[A-Za-z0-9!?- ]{3,10}"/>
+
+                    <p>Al crear un usuario nuevo en el sistema debe tener en cuenta las politicas empleadas por la empresa a la que está sujeto el usuario. <a href="#">Politicas y privacidad de las entidades</a></p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <input class="botons" type="submit" name="aceptar" value="Registrar" onclick="validarEspacios()"/>
+
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>telefono</td>
+                        <td>Direccion</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for x in visitantes%}
+                    <tr>
+                        <td>{{x.0}}</td>
+                        <td>{{x.1}}</td>
+                        <td>{{x.2}}</td>
+                        <td>{{x.3}}</td>
+                        <td>{{x.4}}</td>
+                        <td>
+                            <a href="/editarVisitante/{{x.0}}">Editar</a>
+                            <a> </a>
+                            <a href="/eliminarVisitante/{{x.0}}">Eliminar </a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>
