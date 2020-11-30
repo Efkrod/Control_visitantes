@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>Listado de usuarios</title>
+
+    </head>
+    <body>
+        <section class="form-register">
+            {%with messages = get_flashed_messages()%}
+            {%if messages%}
+            {%for m in messages%}
+                <p>{{m}}</p>
+            {%endfor%}
+            {%endif%}
+            {%endwith%}
+            <form  action="/crearVisitante" method="POST">
+            </form>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>telefono</th>
+                        <th>Direccion</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for x in visitantes%}
+                    <tr>
+                        <td>{{x.0}}</td>
+                        <td>{{x.1}}</td>
+                        <td>{{x.2}}</td>
+                        <td>{{x.3}}</td>
+                        <td>{{x.4}}</td>
+                        <td>
+                            <a href="/editarVisitante/{{x.0}}">Editar</a>
+                            <a> </a>
+                            <a href="/eliminarVisitante/{{x.0}}">Eliminar </a>
+                            <a> </a>
+                            <a href="/permisoIngreso/{{x.0}}">Generar permiso</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>
